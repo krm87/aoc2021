@@ -1,0 +1,56 @@
+#!csharp
+
+using System.IO;
+
+IEnumerable<string> data = File.ReadLines("input.txt");
+
+List<int> measurements = data.Select(s => Int32.Parse(s)).ToList();
+
+int previous = 0;
+int ltp = 0;
+
+for (int i = 0; i < measurements.Count(); i++) {
+    if (i == 0){
+        previous = measurements[i];
+        continue;
+    }
+    if (measurements[i] > previous) {
+        ltp++;
+    }
+    previous = measurements[i];
+}
+
+Console.WriteLine(ltp);
+Console.WriteLine(measurements.Count());
+
+#!csharp
+
+List<int> windows = new List<int>();
+
+for (int i = 0; i < measurements.Count(); i++) {
+    if (i > 1997) {
+        continue;
+    }
+    int sum = measurements[i] + measurements[i + 1] + measurements[i + 2];
+    windows.Add(sum);
+}
+
+Console.WriteLine(windows.Count());
+
+#!csharp
+
+int previousWindow = 0;
+int windowltp = 0;
+
+for (int i = 0; i < windows.Count(); i++) {
+    if (i == 0){
+        previousWindow = windows[i];
+        continue;
+    }
+    if (windows[i] > previousWindow) {
+        windowltp++;
+    }
+    previousWindow = windows[i];
+}
+
+Console.WriteLine(windowltp);
