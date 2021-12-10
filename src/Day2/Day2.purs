@@ -12,6 +12,7 @@ import Effect (Effect)
 import Effect.Console (log)
 import Node.Encoding (Encoding(..))
 import Node.FS.Sync (readTextFile)
+import Utils (readLines)
 
 type Position =
   { depth :: Int
@@ -33,9 +34,6 @@ main = do
 
 stringToNavigation :: String -> Maybe Navigation
 stringToNavigation input = pairToNavigation =<< lineToPair input
-
-readLines :: String -> Array String
-readLines = split (Pattern "\n")
 
 lineToPair :: String -> Maybe (Tuple Int String)
 lineToPair line= do

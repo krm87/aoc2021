@@ -1,7 +1,7 @@
 module Day1  where
 
-import Data.Array (snoc, tail, take, (!!))
-import Data.Maybe (Maybe(..), maybe)
+import Data.Array (snoc, take, (!!))
+import Data.Maybe (maybe)
 import Prelude (Unit, bind, identity, map, show, ($), (+), (<<<), (<>), (>), discard)
 import Data.Int (fromString)
 import Data.String.Common (split)
@@ -11,6 +11,7 @@ import Effect.Console (log)
 import Node.Encoding (Encoding(..))
 import Node.FS.Sync (readTextFile)
 import Data.Foldable (sum)
+import Utils
 
 main :: Effect Unit
 main = do
@@ -32,8 +33,3 @@ toWindow3 acc [] = acc
 toWindow3 acc [_] = acc
 toWindow3 acc [_,_] = acc
 toWindow3 acc xs = toWindow3 (snoc acc $ sum $ take 3 xs) $ tailOrEmpty xs
-
-tailOrEmpty :: Array Int -> Array Int
-tailOrEmpty xs = case tail xs of
-                  Just t -> t
-                  Nothing -> []

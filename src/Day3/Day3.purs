@@ -3,7 +3,7 @@ module Day3 where
 import Data.Array (foldl, mapMaybe, (!!))
 import Data.CodePoint.Unicode (decDigitToInt)
 import Data.Maybe (Maybe(..))
-import Data.String (Pattern(..), codePointFromChar, split)
+import Data.String (codePointFromChar)
 import Data.String.CodeUnits (toCharArray)
 import Matrix (Matrix, columns, fromArray, getColumn, getRow, height, rows, width)
 import Prelude
@@ -13,6 +13,7 @@ import Effect (Effect)
 import Effect.Console (log)
 import Node.FS.Sync (readTextFile)
 import Node.Encoding (Encoding(..))
+import Utils (readLines)
 
 main :: Effect Unit
 main = do
@@ -39,8 +40,7 @@ main = do
                   log $ "Co2 bits: " <> show co2Bits
                   log $ "Life support rating: " <> show (oxygen * co2)
                 Nothing -> log "No co2 rate found" 
-            Nothing -> log "No oxygen rate found"
-          
+            Nothing -> log "No oxygen rate found" 
         Nothing -> log $ "Invalid matrix dimensions"
     Nothing -> log $ "Grid contains invalid digits"
 
@@ -72,9 +72,6 @@ flipBit _ = 0
 
 sumColumns :: Matrix Int -> Array Int
 sumColumns = map sum <<< columns
-
-readLines :: String -> Array String
-readLines = split (Pattern "\n")
 
 linesToCharGrid ∷ Array String -> Array (Array Char)
 linesToCharGrid = map toCharArray

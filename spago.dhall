@@ -17,15 +17,19 @@ to generate this file without the comments in this block.
   , "effect"
   , "foldable-traversable"
   , "integers"
+  , "longs"
   , "matrices"
   , "maybe"
   , "node-buffer"
   , "node-fs"
   , "prelude"
+  , "profunctor-lenses"
   , "psci-support"
   , "strings"
+  , "tailrec"
   , "tuples"
   , "unicode"
+  , "unordered-collections"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
